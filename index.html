@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda Telefonica</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+    <link rel="manifest" href="/manifest.json" />
+
+  </head>
+
+  <script>
+    //Check that service workers are supported
+    if ("serviceWorker" in navigator) {
+      //Use the windows load event to keep teh page load performant
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./js/sw.js");
+      });
+    }
+  </script>
+
+  <body>
+    <div class="agenda">
+        <div class="agenda-header">
+            <h1>Agenda de Contactos</h1>
+            <button id="btn-abrir-form">Añadir</button>
+        </div>
+
+        <div class="agenda-busqueda">
+            <input type="text" id="search" placeholder="Buscar" />
+        </div>
+        
+        <table id="contactos">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        </div>
+
+        <!-- Formulario oculto tipo modal -->
+        <div id="modal" class="modal">
+            <form id="new-contacto-form" class="modal-content">
+                <h2>Nuevo Contacto</h2>
+                <div class="input-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" placeholder="Ingresa el nombre" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono" placeholder="Ej. 555-123-4567" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="correo">Correo</label>
+                    <input type="email" id="correo" placeholder="ejemplo@correo.com" required />
+                </div>
+
+                <div class="acciones">
+                    <button type="submit" class="btn-guardar">Guardar</button>
+                    <button type="button" id="btn-cerrar-form" class="btn-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.2.0/dexie.min.js"></script>
+        <script src="/js/index.js"></script>
+    </body>
+
+</html>
+
+Esa aplicación está hecha con Java y JavaScript, su función principal es agendar numerosos teléfonos haciendo uso de workbox y Dexie
